@@ -138,7 +138,7 @@ export default function CompetenciesPage() {
       </div>
 
       <ConfirmationModal
-        isOpen={showConfirm}
+        open={showConfirm}
         title="Konfirmasi Pembuatan Kompetensi"
         description={`Apakah Anda yakin ingin membuat kompetensi "${formData.name}"?`}
         confirmText="Ya, Buat"

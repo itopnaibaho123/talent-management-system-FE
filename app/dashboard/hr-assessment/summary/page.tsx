@@ -23,18 +23,17 @@ export default function SummaryPage() {
   const assessment = assessments.find((a) => a.id === selectedAssessment)
 
   // Generate summary data
-  const summaryData =
-    assessment?.teams
-      .map((teamMemberId) => {
-        const employee = employees.find((e) => e.id === teamMemberId)
-        const score = Math.floor(Math.random() * 30) + 60
-        return {
-          employeeId: teamMemberId,
-          name: employee?.name,
-          avgScore: score,
-        }
-      })
-      .sort((a, b) => b.avgScore - a.avgScore) || []
+  const summaryData = employees
+  .map ((employee) => {
+    const score = Math.floor(Math.random() * 30) + 60
+    return {
+      employeeId: employee.id,
+      name: employee.name,
+      avgScore: score
+    }
+  })
+  .sort((a, b) => b.avgScore - a.avgScore) || []
+  
 
   return (
     <DashboardLayout>
@@ -67,7 +66,7 @@ export default function SummaryPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Card className="p-6">
                 <p className="text-sm text-muted-foreground mb-1">Total Participants</p>
-                <p className="text-3xl font-bold text-primary">{assessment.teams.length}</p>
+                <p className="text-3xl font-bold text-primary">{summaryData.length}</p>
               </Card>
               <Card className="p-6">
                 <p className="text-sm text-muted-foreground mb-1">Assessment Status</p>

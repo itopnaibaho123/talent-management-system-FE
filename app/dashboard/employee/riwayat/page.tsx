@@ -43,8 +43,7 @@ export default function RiwayatPage() {
   useEffect(() => {
   const valid =
     formData.namaRiwayat.trim() !== "" &&
-    formData.deskripsiRiwayat.trim() !== "" &&
-    formData.skalaRiwayat > 0;
+    formData.deskripsiRiwayat.trim() !== ""
 
   setIsDisabled(!valid);
   }, [formData]);
@@ -56,7 +55,7 @@ export default function RiwayatPage() {
 
   const validateAndConfirm = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!formData.namaRiwayat || !formData.deskripsiRiwayat || !formData.skalaRiwayat) {
+    if (!formData.namaRiwayat || !formData.deskripsiRiwayat) {
       showToast.error("Validation Error", "Please fill all required fields and add at least one question")
       return
     }
@@ -142,16 +141,17 @@ export default function RiwayatPage() {
                     rows={3}
                     />
                 </div>
-                <div>
-                    <label className="text-sm font-medium">Skala</label>
-                    <Input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={formData.skalaRiwayat}
-                        onChange={(e) => setFormData({ ...formData, skalaRiwayat: Number(e.target.value) })}
-                    />
-                </div>
+                {currentType.category === "Riwayat Bahasa inggris dan Bahasa Asing" && (<div>
+                          <label className="text-sm font-medium">Skala</label>
+                          <Input
+                              type="number"
+                              min="0"
+                              max="600"
+                              value={formData.skalaRiwayat}
+                              onChange={(e) => setFormData({ ...formData, skalaRiwayat: Number(e.target.value) })}
+                          />
+                      </div>)}
+                
               </div>
               
               <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90" disabled = {isDisabled}>
@@ -169,17 +169,37 @@ export default function RiwayatPage() {
                   <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Tipe Riwayat</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Nama Riwayat</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Deskripsi Riwayat</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Skala Riwayat</th>
                 </tr>
               </thead>
               <tbody>
-                {riwayat.map((riwayat) => (
+                {riwayat.map((riwayat) => ( riwayat.tipeRiwayat !== "Riwayat Bahasa inggris dan Bahasa Asing" && (
                   <tr key={riwayat.id} className="border-b border-border hover:bg-muted/30">
                     <td className="px-6 py-4 text-sm font-medium text-foreground">{riwayat.tipeRiwayat}</td>
                     <td className="px-6 py-4 text-sm font-medium text-foreground">{riwayat.namaRiwayat}</td>
                     <td className="px-6 py-4 text-sm font-medium text-foreground">{riwayat.deskripsiRiwayat}</td>
+                  </tr> )
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+        <Card>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="border-b border-border bg-muted/50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Nama Bahasa Asing</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Deskripsi</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Nilai Bahasa</th>
+                </tr>
+              </thead>
+              <tbody>
+                {riwayat.map((riwayat) => ( riwayat.tipeRiwayat === "Riwayat Bahasa inggris dan Bahasa Asing" && (
+                  <tr key={riwayat.id} className="border-b border-border hover:bg-muted/30">
+                    <td className="px-6 py-4 text-sm font-medium text-foreground">{riwayat.namaRiwayat}</td>
+                    <td className="px-6 py-4 text-sm font-medium text-foreground">{riwayat.deskripsiRiwayat}</td>
                     <td className="px-6 py-4 text-sm font-medium text-foreground">{riwayat.skalaRiwayat}</td>
-                  </tr>
+                  </tr> )
                 ))}
               </tbody>
             </table>

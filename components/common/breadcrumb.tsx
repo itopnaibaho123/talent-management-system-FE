@@ -28,6 +28,7 @@ export function Breadcrumb() {
     "/dashboard/employee/person-matching": "Person-Job Matching",
     "/dashboard/employee/assessment-results": "Assessment Results",
     "/dashboard/employee/assessment": "Assessment",
+    "/dashboard/employee/riwayat": "Riwayat",
     "/dashboard/user-management": "User Management",
     "/dashboard/user-management/job-person-matches": "Job-Person Matches",
     "/dashboard/user-management/person-job-matches": "Person-Job Matches",

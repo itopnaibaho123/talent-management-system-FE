@@ -38,6 +38,15 @@ export interface Assessment360 {
   createdAt: Date
 }
 
+export interface Riwayat {
+  id: string
+  username: string
+  tipeRiwayat: string
+  namaRiwayat: string
+  deskripsiRiwayat: string
+  skalaRiwayat: number
+}
+
 export interface Question {
   id: string
   question: string

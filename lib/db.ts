@@ -9,7 +9,8 @@ import type {
   ResignationPrediction,
   EmployeeCompetency,
   HierarchyAssignment,
-  PeerAssignment, // Added PeerAssignment type
+  PeerAssignment,
+  Riwayat, // Added PeerAssignment type
 } from "./types"
 
 export class Database {
@@ -17,6 +18,7 @@ export class Database {
 
   private users: User[] = []
   private jobs: Job[] = []
+  private riwayat: Riwayat[] = []
   private competencies: Competency[] = []
   private assessments: Assessment360[] = []
   private personJobMatches: PersonJobMatch[] = []
@@ -56,6 +58,7 @@ export class Database {
         this.resignationPredictions = data.resignationPredictions || []
         this.employeeCompetencies = data.employeeCompetencies || []
         this.hierarchyAssignments = data.hierarchyAssignments || []
+        this.riwayat = data.riwayat
         this.peerAssignments = data.peerAssignments || [] // Load peer assignments
       } else {
         this.initializeDefaultUsers()
@@ -80,6 +83,7 @@ export class Database {
         resignationPredictions: this.resignationPredictions,
         employeeCompetencies: this.employeeCompetencies,
         hierarchyAssignments: this.hierarchyAssignments,
+        riwayat: this.riwayat,
         peerAssignments: this.peerAssignments, // Save peer assignments
       }
       localStorage.setItem("talent_db", JSON.stringify(data))
@@ -167,6 +171,15 @@ export class Database {
   }
   getAssessmentById(id: string) {
     return this.assessments.find((a) => a.id === id)
+  }
+
+  getRiwayatByUsername(username: string) {
+    return this.riwayat.filter((a) => a.username === username)
+  }
+
+  addRiwayat(riwayat: Riwayat) {
+    this.riwayat.push(riwayat)
+    this.saveToStorage()
   }
   addAssessment(assessment: Assessment360) {
     this.assessments.push(assessment)

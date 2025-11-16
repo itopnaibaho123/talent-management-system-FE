@@ -19,7 +19,7 @@ export default function UserManagementPage() {
       setCurrentUser(userData)
 
       // Check if user has access to this dashboard
-      if (!["admin", "hr-development", "hr-assessment"].includes(userData.role)) {
+      if (!["admin", "hr-development", "hr-assessment","user-manajemen"].includes(userData.role)) {
         router.push("/dashboard/employee")
       }
     }
@@ -27,7 +27,7 @@ export default function UserManagementPage() {
     setEmployees(db.getUsers().filter((u) => u.role === "employee"))
   }, [router])
 
-  if (!currentUser || !["admin", "hr-development", "hr-assessment"].includes(currentUser.role)) {
+  if (!currentUser || !["admin", "hr-development", "hr-assessment", "user-manajemen"].includes(currentUser.role)) {
     return null
   }
 
@@ -51,10 +51,6 @@ export default function UserManagementPage() {
             <p className="text-3xl font-bold text-secondary">{db.getJobPersonMatches().length}</p>
           </Card>
           <Card className="p-6">
-            <p className="text-sm text-muted-foreground mb-1">Person-Job Matches</p>
-            <p className="text-3xl font-bold text-accent">{db.getPersonJobMatches().length}</p>
-          </Card>
-          <Card className="p-6">
             <p className="text-sm text-muted-foreground mb-1">Total Competencies</p>
             <p className="text-3xl font-bold text-primary">{db.getCompetencies().length}</p>
           </Card>
@@ -72,11 +68,11 @@ export default function UserManagementPage() {
                 <p className="text-xs text-muted-foreground">All successor recommendations by job</p>
               </a>
               <a
-                href="/dashboard/user-management/person-job-matches"
+                href="/dashboard/user-management/resignation"
                 className="block p-4 border border-border rounded-lg hover:bg-muted/50 transition"
               >
-                <h3 className="font-semibold text-foreground mb-1">Person-Job Matches</h3>
-                <p className="text-xs text-muted-foreground">All employee job recommendations</p>
+                <h3 className="font-semibold text-foreground mb-1">Resignation</h3>
+                <p className="text-xs text-muted-foreground">All employee Resignation</p>
               </a>
               <a
                 href="/dashboard/user-management/training-recommendations"

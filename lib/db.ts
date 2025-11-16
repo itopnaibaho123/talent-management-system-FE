@@ -99,6 +99,7 @@ export class Database {
         role: "hr-development",
       },
       { id: "3", username: "HRPenilaian", password: "HRPenilaian123", name: "HR Penilaian", role: "hr-assessment" },
+      { id: "4", username: "USERManajemen", password: "USERManajemen123", name: "User Manajemen", role: "user-manajemen" },
     ]
     this.saveToStorage()
   }

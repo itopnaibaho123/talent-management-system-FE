@@ -37,6 +37,7 @@ export default function LoginPage() {
       "hr-development": "/dashboard/hr-development",
       "hr-assessment": "/dashboard/hr-assessment",
       employee: "/dashboard/employee",
+      "user-manajemen": "/dashboard/user-management"
     }
 
     router.push(roleRoutes[user.role] || "/dashboard")
@@ -96,6 +97,9 @@ export default function LoginPage() {
               </p>
               <p className="text-muted-foreground">
                 <span className="font-medium">HR Assess:</span> HRPenilaian / HRPenilaian123
+              </p>
+              <p className="text-muted-foreground">
+                <span className="font-medium">User Manajemen:</span> USERManajemen / USERManajemen123
               </p>
             </div>
           </div>

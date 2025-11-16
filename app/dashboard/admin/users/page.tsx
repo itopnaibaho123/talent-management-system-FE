@@ -55,7 +55,7 @@ export default function UserManagementPage() {
 
   const handleDeleteUser = (id: string) => {
     const user = db.getUserById(id)
-    if (user && (user.role === "admin" || user.role === "hr-development" || user.role === "hr-assessment")) {
+    if (user && (user.role === "admin" || user.role === "hr-development" || user.role === "hr-assessment" || user.role === "user-manajemen" )) {
       showToast.error("Delete Error", "Cannot delete system users")
       return
     }
@@ -70,6 +70,7 @@ export default function UserManagementPage() {
     "hr-development": "HR Pengembangan",
     "hr-assessment": "HR Penilaian",
     employee: "Pegawai",
+    "user-manajemen": "User Manajemen",
   }
 
   return (

@@ -32,6 +32,12 @@ const menuItems: Record<string, Array<{ label: string; href: string }>> = {
     { label: "Person-Job Matching", href: "/dashboard/employee/person-matching" },
     { label: "Assessment Results", href: "/dashboard/employee/assessment-results" },
   ],
+  "user-manajemen": [
+    { label: "Dashboard", href: "/dashboard/user-management" },
+    { label: "Job-Person Matching", href: "/dashboard/user-management/job-person-matches" },
+    { label: "Resignation", href: "/dashboard/user-management/resignation" },
+    { label: "training-recommendations", href: "/dashboard/user-management/training-recommendations" },
+  ],
 }
 
 export function Sidebar() {

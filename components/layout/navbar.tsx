@@ -28,6 +28,7 @@ export function Navbar() {
     "hr-development": "HR Pengembangan",
     "hr-assessment": "HR Penilaian",
     employee: "Pegawai",
+    "user-manajemen": "User Manajemen",
   }
 
   return (

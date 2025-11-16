@@ -16,10 +16,20 @@ export default function CompetenciesPage() {
   const [showForm, setShowForm] = useState(false)
   const [formData, setFormData] = useState({ name: "", trainings: "", weight: 50 })
   const [showConfirm, setShowConfirm] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(true)
 
   useEffect(() => {
     loadCompetencies()
   }, [])
+
+  useEffect(() => {
+    const valid =
+      formData.name.trim() !== "" &&
+      formData.trainings.trim() !== "" &&
+      formData.weight > 0;
+  
+    setIsDisabled(!valid);
+    }, [formData]);
 
   const loadCompetencies = () => {
     setCompetencies(db.getCompetencies())

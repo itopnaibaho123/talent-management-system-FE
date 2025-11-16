@@ -14,6 +14,7 @@ import { ConfirmationModal } from "@/components/common/confirmation-modal"
 
 export default function RiwayatPage() {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
+  const [isDisabled, setIsDisabled] = useState(true)
   const [riwayat, setRiwayat] = useState<Riwayat[]>([])
   const [showForm, setShowForm] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
@@ -38,6 +39,15 @@ export default function RiwayatPage() {
     if(!currentUser?.username) return;
     loadData()
   }, [currentUser])
+
+  useEffect(() => {
+  const valid =
+    formData.namaRiwayat.trim() !== "" &&
+    formData.deskripsiRiwayat.trim() !== "" &&
+    formData.skalaRiwayat > 0;
+
+  setIsDisabled(!valid);
+  }, [formData]);
 
   const loadData = () => {
     const result = db.getRiwayatByUsername(currentUser!.username);
@@ -144,7 +154,7 @@ export default function RiwayatPage() {
                 </div>
               </div>
               
-              <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90">
+              <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90" disabled = {isDisabled}>
                 Create Riwayat
               </Button>
             </form>

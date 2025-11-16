@@ -15,10 +15,21 @@ export default function JobsPage() {
   const [jobs, setJobs] = useState<Job[]>([])
   const [showForm, setShowForm] = useState(false)
   const [formData, setFormData] = useState({ name: "", level: "", weight: 50, criteria: "" })
+  const [isDisabled, setIsDisabled] = useState(true)
 
   useEffect(() => {
     loadJobs()
   }, [])
+
+  useEffect(() => {
+    const valid =
+      formData.name.trim() !== "" &&
+      formData.level.trim() !== "" &&
+      formData.weight > 0;
+      formData.criteria.trim() !== "";
+  
+    setIsDisabled(!valid);
+    }, [formData]);
 
   const loadJobs = () => {
     setJobs(db.getJobs())
@@ -100,7 +111,7 @@ export default function JobsPage() {
                   rows={4}
                 />
               </div>
-              <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90">
+              <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90" disabled={isDisabled}>
                 Create Job
               </Button>
             </form>

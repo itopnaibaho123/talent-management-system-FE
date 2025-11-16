@@ -14,6 +14,7 @@ import { ConfirmationModal } from "@/components/common/confirmation-modal"
 
 export default function AssessmentsPage() {
   const [assessments, setAssessments] = useState<Assessment360[]>([])
+  const [isDisabled, setIsDisabled] = useState(true)
   const [employees, setEmployees] = useState<any[]>([])
   const [showForm, setShowForm] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
@@ -29,6 +30,17 @@ export default function AssessmentsPage() {
   useEffect(() => {
     loadData()
   }, [])
+
+  useEffect(() => {
+    const valid =
+      formData.name.trim() !== "" &&
+      formData.startDate.trim() !== "" &&
+      formData.endDate.trim() !== "" &&
+      formData.questions.length > 0 &&
+      formData.inChargeIds.length > 0
+  
+    setIsDisabled(!valid);
+    }, [formData]);
 
   const loadData = () => {
     setAssessments(db.getAssessments())
@@ -265,7 +277,7 @@ export default function AssessmentsPage() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90">
+              <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90" disabled={isDisabled}>
                 Create Assessment (All Employees Auto-Assigned)
               </Button>
             </form>

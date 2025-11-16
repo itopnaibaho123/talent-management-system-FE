@@ -14,6 +14,8 @@ import { ConfirmationModal } from "@/components/common/confirmation-modal"
 
 export default function UserManagementPage() {
   const [users, setUsers] = useState<User[]>([])
+  const [isDisabled, setIsDisabled] = useState(true)
+
   const [showForm, setShowForm] = useState(false)
   const [formData, setFormData] = useState({ username: "", password: "", name: "" })
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null)
@@ -21,6 +23,15 @@ export default function UserManagementPage() {
   useEffect(() => {
     loadUsers()
   }, [])
+
+  useEffect(() => {
+    const valid =
+      formData.username.trim() !== "" &&
+      formData.password.trim() !== "" &&
+      formData.name.trim() !== "";  
+  
+    setIsDisabled(!valid);
+    }, [formData]);
 
   const loadUsers = () => {
     setUsers(db.getUsers())
@@ -115,7 +126,7 @@ export default function UserManagementPage() {
                   placeholder="Employee name"
                 />
               </div>
-              <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90">
+              <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90" disabled={isDisabled}>
                 Create Employee
               </Button>
             </form>

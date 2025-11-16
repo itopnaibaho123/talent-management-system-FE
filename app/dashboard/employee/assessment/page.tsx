@@ -60,7 +60,7 @@ export default function EmployeeAssessmentPage() {
       return
     }
 
-    const confirmed = window.confirm(`Apakah Anda yakin ingin menyimpan penilaian untuk ${selectedRatee?.name}?`)
+    const confirmed = window.confirm(`Are you sure you want to save the rating for ${selectedRatee?.name}?`)
     if (!confirmed) {
       console.log("[v0] User cancelled submission")
       return
@@ -139,7 +139,7 @@ export default function EmployeeAssessmentPage() {
         <div className="space-y-6">
           <div>
             <h1 className="text-3xl font-bold text-foreground">360 Degree Assessment</h1>
-            <p className="text-muted-foreground mt-1">Berikan penilaian kepada rekan kerja Anda</p>
+            <p className="text-muted-foreground mt-1">Rate your coworkers</p>
           </div>
 
           <div className="grid gap-4">
@@ -150,16 +150,16 @@ export default function EmployeeAssessmentPage() {
                     <div>
                       <h2 className="text-lg font-semibold text-foreground">{assessment.name}</h2>
                       <p className="text-sm text-muted-foreground mt-1">
-                        {assessment.questions.length} pertanyaan | {assessment.juries.length} peserta
+                        {assessment.questions.length} question | {assessment.juries.length} participant
                       </p>
                     </div>
-                    <Button onClick={() => handleAssessmentSelect(assessment)}>Mulai Penilaian</Button>
+                    <Button onClick={() => handleAssessmentSelect(assessment)}>Start Assesment</Button>
                   </div>
                 </Card>
               ))
             ) : (
               <Card className="p-6">
-                <p className="text-muted-foreground text-center">Tidak ada assessment yang sedang berjalan</p>
+                <p className="text-muted-foreground text-center">There is no ongoing assessment</p>
               </Card>
             )}
           </div>

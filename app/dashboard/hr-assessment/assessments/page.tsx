@@ -60,7 +60,7 @@ export default function AssessmentsPage() {
         ...prev,
         questions: [...prev.questions, newQuestion],
       }))
-      setCurrentQuestion({ question: "", category: "Kinerja", weight: 50 })
+      setCurrentQuestion({ question: "", category: "Performance", weight: 50 })
       showToast.success("Success", "Question added successfully")
     }
   }
@@ -253,10 +253,10 @@ export default function AssessmentsPage() {
                         onChange={(e) => setCurrentQuestion({ ...currentQuestion, category: e.target.value })}
                         className="w-full px-3 py-2 border border-border rounded-lg bg-background text-foreground text-sm"
                       >
-                        <option>Kinerja</option>
-                        <option>Kepemimpinan</option>
-                        <option>Kolaborasi</option>
-                        <option>Inovasi</option>
+                        <option>Performance</option>
+                        <option>Leadership</option>
+                        <option>Collaboration</option>
+                        <option>Innovation</option>
                       </select>
                     </div>
                     <div>

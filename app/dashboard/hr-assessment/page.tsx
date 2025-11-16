@@ -25,8 +25,8 @@ export default function HRAssessmentDashboard() {
     <DashboardLayout>
       <div className="space-y-8">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">HR Penilaian Dashboard</h1>
-          <p className="text-muted-foreground mt-1">Kelola penilaian 360 derajat untuk evaluasi kinerja</p>
+          <h1 className="text-3xl font-bold text-foreground">HR Assessment Dashboard</h1>
+          <p className="text-muted-foreground mt-1">Manage 360-degree assessments for performance evaluation</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

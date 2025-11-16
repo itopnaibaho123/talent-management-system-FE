@@ -96,21 +96,21 @@ export default function RiwayatPage() {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Riwayat</h1>
-            <p className="text-muted-foreground mt-1">All Riwayat of {currentUser?.name}</p>
+            <h1 className="text-3xl font-bold text-foreground">Talent Supporting Data</h1>
+            <p className="text-muted-foreground mt-1">All Talent Supporting Data of {currentUser?.name}</p>
           </div>
           <Button className="bg-primary hover:bg-primary/90" onClick={() => setShowForm(!showForm)}>
-            {showForm ? "Cancel" : "Create Riwayat"}
+            {showForm ? "Cancel" : "Create Achievement"}
           </Button>
         </div>
 
         {showForm && (
           <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-6">Membuat Riwayat Baru</h2>
+            <h2 className="text-xl font-semibold mb-6">Entering new data</h2>
             <form onSubmit={validateAndConfirm} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                      <label className="text-sm font-medium">Tipe Riwayat</label>
+                      <label className="text-sm font-medium">Achievement Type</label>
                       <select
                         value={currentType.category}
                         onChange={(e) => setCurrentType({ ...currentType, category: e.target.value })}
@@ -124,7 +124,7 @@ export default function RiwayatPage() {
                       </select>
                     </div>
                 <div>
-                  <label className="text-sm font-medium">Nama Riwayat</label>
+                  <label className="text-sm font-medium">Name of Achievement</label>
                   <Input
                     value={formData.namaRiwayat}
                     onChange={(e) => setFormData({ ...formData, namaRiwayat: e.target.value })}
@@ -132,7 +132,7 @@ export default function RiwayatPage() {
                   />
                 </div>
                 <div>
-                    <label className="text-sm font-medium">Deskripsi</label>
+                    <label className="text-sm font-medium">Description</label>
                     <textarea
                     value={formData.deskripsiRiwayat}
                     onChange={(e) => setFormData({ ...formData, deskripsiRiwayat: e.target.value })}
@@ -142,7 +142,7 @@ export default function RiwayatPage() {
                     />
                 </div>
                 {currentType.category === "Riwayat Bahasa inggris dan Bahasa Asing" && (<div>
-                          <label className="text-sm font-medium">Skala</label>
+                          <label className="text-sm font-medium">Score</label>
                           <Input
                               type="number"
                               min="0"
@@ -155,7 +155,7 @@ export default function RiwayatPage() {
               </div>
               
               <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90" disabled = {isDisabled}>
-                Create Riwayat
+                Create Achievement
               </Button>
             </form>
           </Card>
@@ -166,9 +166,9 @@ export default function RiwayatPage() {
             <table className="w-full">
               <thead className="border-b border-border bg-muted/50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Tipe Riwayat</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Nama Riwayat</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Deskripsi Riwayat</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Achievement Type</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Achievement Name</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Achievement Description</th>
                 </tr>
               </thead>
               <tbody>
@@ -188,9 +188,9 @@ export default function RiwayatPage() {
             <table className="w-full">
               <thead className="border-b border-border bg-muted/50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Nama Bahasa Asing</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Deskripsi</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Nilai Bahasa</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Name</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Description</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-foreground">Score</th>
                 </tr>
               </thead>
               <tbody>

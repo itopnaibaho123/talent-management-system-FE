@@ -184,10 +184,10 @@ export default function EmployeeCompetenciesPage() {
 
       <ConfirmationModal
         open={showConfirmAdd}
-        title="Konfirmasi Penambahan Kompetensi"
-        description={`Apakah Anda yakin ingin menambahkan kompetensi "${confirmData?.competencyName}" untuk employee ini?`}
-        confirmText="Ya, Tambahkan"
-        cancelText="Batal"
+        title="Confirmation of Additional Competencies"
+        description={`Are you sure want to add "${confirmData?.competencyName}" to this employee?`}
+        confirmText="Yes, Add it"
+        cancelText="Cancel"
         onConfirm={confirmAddCompetency}
         onCancel={() => {
           setShowConfirmAdd(false)
@@ -197,10 +197,10 @@ export default function EmployeeCompetenciesPage() {
 
       <ConfirmationModal
         open={showConfirmRemove}
-        title="Konfirmasi Penghapusan Kompetensi"
-        description="Apakah Anda yakin ingin menghapus kompetensi ini dari employee?"
-        confirmText="Ya, Hapus"
-        cancelText="Batal"
+        title="Confirmation of Elimination of Competency"
+        description="Are you sure you want to remove this competency from employee?"
+        confirmText="Yes, Delete"
+        cancelText="Cancel"
         onConfirm={confirmRemoveCompetency}
         onCancel={() => setShowConfirmRemove(false)}
       />

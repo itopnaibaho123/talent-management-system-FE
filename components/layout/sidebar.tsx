@@ -31,7 +31,7 @@ const menuItems: Record<string, Array<{ label: string; href: string }>> = {
     { label: "Dashboard", href: "/dashboard/employee" },
     { label: "Person-Job Matching", href: "/dashboard/employee/person-matching" },
     { label: "Assessment Results", href: "/dashboard/employee/assessment-results" },
-    { label: "Riwayat", href: "/dashboard/employee/riwayat" },
+    { label: "Achievement", href: "/dashboard/employee/riwayat" },
   ],
   "user-manajemen": [
     { label: "Dashboard", href: "/dashboard/user-management" },

@@ -183,7 +183,7 @@ export default function EmployeeCompetenciesPage() {
       </div>
 
       <ConfirmationModal
-        isOpen={showConfirmAdd}
+        open={showConfirmAdd}
         title="Konfirmasi Penambahan Kompetensi"
         description={`Apakah Anda yakin ingin menambahkan kompetensi "${confirmData?.competencyName}" untuk employee ini?`}
         confirmText="Ya, Tambahkan"
@@ -196,7 +196,7 @@ export default function EmployeeCompetenciesPage() {
       />
 
       <ConfirmationModal
-        isOpen={showConfirmRemove}
+        open={showConfirmRemove}
         title="Konfirmasi Penghapusan Kompetensi"
         description="Apakah Anda yakin ingin menghapus kompetensi ini dari employee?"
         confirmText="Ya, Hapus"

@@ -16,8 +16,8 @@ export default function HRAssessmentDashboard() {
     const assessments = db.getAssessments()
     setStats({
       totalAssessments: assessments.length,
-      inProgress: assessments.filter((a) => a.status === "sedang berjalan").length,
-      completed: assessments.filter((a) => a.status === "selesai").length,
+      inProgress: assessments.filter((a) => a.status === "Ongoing").length,
+      completed: assessments.filter((a) => a.status === "Finish").length,
     })
   }, [])
 

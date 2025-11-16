@@ -30,7 +30,7 @@ export interface Assessment360 {
   name: string
   startDate: Date
   endDate: Date
-  status: "sedang berjalan" | "selesai"
+  status: "Ongoing" | "Finish"
   questions: Question[]
   juries: AssessmentJury[]
   responses: Assessment360Response[]
@@ -87,7 +87,7 @@ export interface EmployeeCompetency {
 
 export interface ResignationPrediction {
   employeeId: string
-  riskLevel: "rendah" | "sedang" | "tinggi"
+  riskLevel: "Low" | "Moderate" | "High"
   estimatedMonths: number
   reason: string
   predictedAt: Date

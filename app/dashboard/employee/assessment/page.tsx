@@ -27,7 +27,7 @@ export default function EmployeeAssessmentPage() {
     if (user) {
       const userData = JSON.parse(user)
       setCurrentUser(userData)
-      const active = db.getAssessments().filter((a) => a.status === "sedang berjalan")
+      const active = db.getAssessments().filter((a) => a.status === "Ongoing")
       setAssessments(active)
     }
   }, [])
@@ -189,11 +189,11 @@ export default function EmployeeAssessmentPage() {
                 setSelectedRatee(null)
               }}
             >
-              ← Kembali
+              ← Back
             </Button>
             <div>
               <h1 className="text-3xl font-bold text-foreground">{selectedAssessment.name}</h1>
-              <p className="text-muted-foreground mt-1">Pilih orang yang ingin Anda nilai</p>
+              <p className="text-muted-foreground mt-1">Select the person you want to rate</p>
             </div>
           </div>
 
@@ -201,13 +201,13 @@ export default function EmployeeAssessmentPage() {
             {/* Self Assessment */}
             {groupedRatees.self.map((ratee) => (
               <Card key={ratee.id} className="p-6">
-                <h3 className="text-lg font-semibold mb-2 text-primary">Penilaian Diri</h3>
-                <p className="text-sm text-muted-foreground mb-4">{db.getUserById(ratee.id)?.name || "Anda"}</p>
+                <h3 className="text-lg font-semibold mb-2 text-primary">Self Assesment</h3>
+                <p className="text-sm text-muted-foreground mb-4">{db.getUserById(ratee.id)?.name || "You"}</p>
                 <Button
                   onClick={() => handleRateeSelect(ratee.id, db.getUserById(ratee.id)?.name || "Self", "self")}
                   className="w-full"
                 >
-                  Mulai →
+                  Start →
                 </Button>
               </Card>
             ))}
@@ -221,7 +221,7 @@ export default function EmployeeAssessmentPage() {
                   onClick={() => handleRateeSelect(ratee.id, db.getUserById(ratee.id)?.name || "Supervisor", "upward")}
                   className="w-full"
                 >
-                  Mulai →
+                  Start →
                 </Button>
               </Card>
             ))}
@@ -229,9 +229,9 @@ export default function EmployeeAssessmentPage() {
             {/* Downward (Subordinates) */}
             {groupedRatees.downward.map((ratee) => (
               <Card key={ratee.id} className="p-6">
-                <h3 className="text-lg font-semibold mb-2 text-secondary">Penilaian ke Bawahan</h3>
+                <h3 className="text-lg font-semibold mb-2 text-secondary">Assessment of Subordinates</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Nilai {db.getUserById(ratee.id)?.name || "Bawahan"}
+                  Score {db.getUserById(ratee.id)?.name || "Subordinates"}
                 </p>
                 <Button
                   onClick={() =>
@@ -239,7 +239,7 @@ export default function EmployeeAssessmentPage() {
                   }
                   className="w-full"
                 >
-                  Mulai →
+                  Start →
                 </Button>
               </Card>
             ))}
@@ -247,15 +247,15 @@ export default function EmployeeAssessmentPage() {
             {/* Peer */}
             {groupedRatees.peer.map((ratee) => (
               <Card key={ratee.id} className="p-6">
-                <h3 className="text-lg font-semibold mb-2 text-foreground">Penilaian Peer</h3>
+                <h3 className="text-lg font-semibold mb-2 text-foreground">Rate Peer</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Nilai {db.getUserById(ratee.id)?.name || "Rekan Kerja"}
+                  Score {db.getUserById(ratee.id)?.name || "Peer"}
                 </p>
                 <Button
                   onClick={() => handleRateeSelect(ratee.id, db.getUserById(ratee.id)?.name || "Peer", "peer")}
                   className="w-full"
                 >
-                  Mulai →
+                  Start →
                 </Button>
               </Card>
             ))}
@@ -264,7 +264,7 @@ export default function EmployeeAssessmentPage() {
           {assignedRatees.length === 0 && (
             <Card className="p-6">
               <p className="text-muted-foreground text-center">
-                Anda tidak ditugaskan untuk menilai siapa pun dalam assessment ini
+                You are not assigned to assess anyone in this assessment.
               </p>
             </Card>
           )}
@@ -282,10 +282,10 @@ export default function EmployeeAssessmentPage() {
           </Button>
           <div>
             <h1 className="text-3xl font-bold text-foreground">
-              Penilaian {selectedRatee.type === "self" ? "Diri" : selectedRatee.name}
+              Score {selectedRatee.type === "self" ? "Diri" : selectedRatee.name}
             </h1>
             <p className="text-muted-foreground mt-1">
-              Tipe:{" "}
+              Type:{" "}
               {selectedRatee.type === "self"
                 ? "Self-Assessment"
                 : selectedRatee.type === "upward"
@@ -299,7 +299,7 @@ export default function EmployeeAssessmentPage() {
 
         {submitted && (
           <Card className="p-4 bg-green-50 border-green-200">
-            <p className="text-green-700">Penilaian berhasil disimpan!</p>
+            <p className="text-green-700">Assessment saved successfully!</p>
           </Card>
         )}
 
@@ -307,7 +307,7 @@ export default function EmployeeAssessmentPage() {
           <div className="space-y-6">
             {selectedAssessment.questions.map((question, idx) => (
               <div key={question.id} className="pb-6 border-b border-border last:border-0">
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Kategori: {question.category}</p>
+                <p className="text-sm font-semibold text-muted-foreground mb-2">Category: {question.category}</p>
                 <p className="font-medium text-foreground mb-3">
                   {idx + 1}. {question.question}
                 </p>
@@ -340,7 +340,7 @@ export default function EmployeeAssessmentPage() {
             onClick={() => handleSubmit()}
             disabled={Object.keys(answers).length !== selectedAssessment.questions.length || isLoading}
           >
-            {isLoading ? "Menyimpan..." : "Simpan Penilaian"}
+            {isLoading ? "Saving..." : "Save Ratings"}
           </Button>
         </div>
       </div>

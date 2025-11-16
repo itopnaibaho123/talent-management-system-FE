@@ -28,15 +28,15 @@ export default function ResignationPredictionPage() {
 
       // Generate deterministic prediction
       const score = generateDeterministicScore("resignation", emp.id, "base")
-      const riskLevel = score < 70 ? "rendah" : score < 85 ? "sedang" : "tinggi"
+      const riskLevel = score < 70 ? "Low" : score < 85 ? "Moderate" : "High"
       const months = Math.floor((score - 50) / 10) + 1
 
       const reasons = [
-        "Performa menurun",
-        "Kurangnya kesempatan promosi",
-        "Tidak ada keseimbangan kerja-hidup",
-        "Kompensasi tidak kompetitif",
-        "Lingkungan kerja kurang mendukung",
+        "Performance decreases",
+        "Lack of promotional opportunities",
+        "No work-life balance",
+        "Compensation is not competitive",
+        "The work environment is less supportive",
       ]
       const reason = reasons[Math.floor(Math.random() * reasons.length)]
 
@@ -78,12 +78,12 @@ export default function ResignationPredictionPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {["rendah", "sedang", "tinggi"].map((level) => {
+          {["Low", "Moderate", "High"].map((level) => {
             const count = predictions.filter((p) => p.riskLevel === level).length
             const colors = {
-              rendah: "text-green-600 bg-green-50 dark:bg-green-900/20 dark:text-green-400",
-              sedang: "text-yellow-600 bg-yellow-50 dark:bg-yellow-900/20 dark:text-yellow-400",
-              tinggi: "text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400",
+              Low: "text-green-600 bg-green-50 dark:bg-green-900/20 dark:text-green-400",
+              Moderate: "text-yellow-600 bg-yellow-50 dark:bg-yellow-900/20 dark:text-yellow-400",
+              High: "text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400",
             }
             return (
               <Card key={level} className={`p-6 ${colors[level as keyof typeof colors]}`}>

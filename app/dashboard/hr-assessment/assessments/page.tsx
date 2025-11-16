@@ -125,7 +125,7 @@ export default function AssessmentsPage() {
       name: formData.name,
       startDate: new Date(formData.startDate),
       endDate: new Date(formData.endDate),
-      status: "sedang berjalan",
+      status: "Ongoing",
       questions: formData.questions,
       juries,
       responses: [],
@@ -309,7 +309,7 @@ export default function AssessmentsPage() {
                     <td className="px-6 py-4 text-sm">
                       <span
                         className={`px-2 py-1 rounded text-xs font-semibold ${
-                          assess.status === "sedang berjalan"
+                          assess.status === "Ongoing"
                             ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400"
                             : "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
                         }`}

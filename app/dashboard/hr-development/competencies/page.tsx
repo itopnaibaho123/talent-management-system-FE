@@ -108,7 +108,7 @@ export default function CompetenciesPage() {
                   onChange={(e) => setFormData({ ...formData, weight: Number(e.target.value) })}
                 />
               </div>
-              <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90">
+              <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90" disabled = {isDisabled}>
                 Create Competency
               </Button>
             </form>
@@ -149,10 +149,10 @@ export default function CompetenciesPage() {
 
       <ConfirmationModal
         open={showConfirm}
-        title="Konfirmasi Pembuatan Kompetensi"
-        description={`Apakah Anda yakin ingin membuat kompetensi "${formData.name}"?`}
-        confirmText="Ya, Buat"
-        cancelText="Batal"
+        title="Confirmation of Competency Creation"
+        description={`Are you sure you want to create a competency of "${formData.name}"?`}
+        confirmText="Yes, Create"
+        cancelText="Cancel"
         onConfirm={confirmCreate}
         onCancel={() => setShowConfirm(false)}
       />

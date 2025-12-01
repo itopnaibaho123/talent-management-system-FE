@@ -215,8 +215,8 @@ export default function EmployeeAssessmentPage() {
             {/* Upward (Supervisor) */}
             {groupedRatees.upward.map((ratee) => (
               <Card key={ratee.id} className="p-6">
-                <h3 className="text-lg font-semibold mb-2 text-accent">Penilaian ke Atasan</h3>
-                <p className="text-sm text-muted-foreground mb-4">Nilai {db.getUserById(ratee.id)?.name || "Atasan"}</p>
+                <h3 className="text-lg font-semibold mb-2 text-accent">Assesment to Upward</h3>
+                <p className="text-sm text-muted-foreground mb-4">Score {db.getUserById(ratee.id)?.name || "Upward"}</p>
                 <Button
                   onClick={() => handleRateeSelect(ratee.id, db.getUserById(ratee.id)?.name || "Supervisor", "upward")}
                   className="w-full"
@@ -278,7 +278,7 @@ export default function EmployeeAssessmentPage() {
       <div className="space-y-6">
         <div className="flex items-center gap-4">
           <Button variant="outline" onClick={() => setSelectedRatee(null)} disabled={isLoading}>
-            ← Kembali
+            ← Back
           </Button>
           <div>
             <h1 className="text-3xl font-bold text-foreground">
@@ -334,7 +334,7 @@ export default function EmployeeAssessmentPage() {
 
         <div className="flex gap-3">
           <Button variant="outline" onClick={() => setSelectedRatee(null)} disabled={isLoading}>
-            Batal
+            Cancel
           </Button>
           <Button
             onClick={() => handleSubmit()}

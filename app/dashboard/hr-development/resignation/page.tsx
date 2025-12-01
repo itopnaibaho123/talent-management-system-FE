@@ -58,11 +58,11 @@ export default function ResignationPredictionPage() {
 
   const getRiskColor = (riskLevel: string) => {
     switch (riskLevel) {
-      case "rendah":
+      case "Low":
         return "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-      case "sedang":
+      case "Moderate":
         return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400"
-      case "tinggi":
+      case "High":
         return "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"
       default:
         return "bg-muted"

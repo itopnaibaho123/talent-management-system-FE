@@ -1,10 +1,13 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { SetStateAction, useEffect, useState } from "react"
 import { DashboardLayout } from "@/components/layout/dashboard-layout"
 import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { db } from "@/lib/db"
 import type { User, PersonJobMatch, EmployeeCompetency, HierarchyAssignment, Riwayat } from "@/lib/types"
+
+
 
 export default function EmployeeDashboard() {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
@@ -19,6 +22,9 @@ export default function EmployeeDashboard() {
     hasSubordinates: 0,
     riwayat: 0,
   })
+  
+  const [training, setTraining] = useState<string[]>([])
+  
 
   useEffect(() => {
     const user = localStorage.getItem("currentUser")
@@ -44,6 +50,12 @@ export default function EmployeeDashboard() {
         hasSubordinates: hier?.subordinateIds.length || 0,
         riwayat: riwayat.length
       })
+      const allTrainings = comps.flatMap((ec) => {
+        const comp = db.getCompetencyById(ec.competencyId)
+        return comp?.trainings ?? []
+      })
+
+      setTraining(allTrainings)
     }
   }, [])
 
@@ -64,6 +76,7 @@ export default function EmployeeDashboard() {
           </Card>
           <Card className="p-6">
             <p className="text-sm text-muted-foreground mb-1">Your Competencies</p>
+           
             <p className="text-3xl font-bold text-secondary">{stats.competencies}</p>
           </Card>
           <Card className="p-6">
@@ -147,16 +160,34 @@ export default function EmployeeDashboard() {
                 return (
                   <div
                     key={ec.competencyId}
-                    className="px-3 py-1 bg-secondary/20 text-secondary-foreground rounded-full text-sm font-medium"
+                    className="px-3 py-1 bg-secondary/100 text-secondary-foreground rounded-full text-sm font-medium"
                   >
-                    {comp?.name}
+                     {comp?.name}
                   </div>
                 )
               })}
             </div>
           </Card>
         )}
+        {training.length > 0 && (
+          <Card className="p-6">
+            <h2 className="text-lg font-semibold mb-4">Your Training</h2>
+            <div className="flex flex-wrap gap-2">
+              {training.map((train) => {
+                return (
+                  <div
+                    className="px-3 py-1 bg-secondary/100 text-secondary-foreground rounded-full text-sm font-medium"
+                  >
+                     {train}
+                  </div>
+                )
+              })}
+            </div>
+          </Card>
+        )}
+        
       </div>
+      
     </DashboardLayout>
   )
 }
